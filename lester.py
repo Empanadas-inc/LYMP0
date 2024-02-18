@@ -2,14 +2,53 @@ import ply.lex as lex
 
 #lista de tokens
 
-tokens={
-    
-    "DEFVAR","NAME","VAR","MOVE","SKIP","TURND","FACE0","PUT","PICK","MOVEDIR","MOVE","RUNDIR","MOVEFACE",
-    "NULL","MOVEFACE","DIM","MYXPOS","MYYPOS","MYCHIPS","MYBALLOONS","BALOONSHERE","CHIPSHERE",
-    "SPACES","IF","LOOP","REPEAT","DEFUN","FACING","BLOCKED","CANPUT","CANPICK","CANMOVE","ISZERO",
-    "NOT","NOTCOND","MOVE","RUN","DROP","LEFT","RIGHT","DOWN","UP"
-}
 
+
+tokens = [
+    "DEFVAR", "NAME", "VAR", "MOVE", "SKIP", "TURND", "FACE0", "PUT", "PICK", "MOVEDIR", "RUNDIR",
+    "NULL", "MOVEFACE", "DIM", "MYXPOS", "MYYPOS", "MYCHIPS", "MYBALLOONS", "BALLOONSHERE", "CHIPSHERE",
+    "SPACES", "IF", "LOOP", "REPEAT", "DEFUN", "FACING", "BLOCKED", "CANPUT", "CANPICK", "CANMOVE", "ISZERO",
+    "NOT", "NOTCOND", "RUN", "DROP", "LEFT", "RIGHT", "DOWN", "UP", "NUMBER", "LPAREN", "RPAREN", "COLON"
+]
+
+
+keywords = {
+    'defvar': 'DEFVAR',
+    'move': 'MOVE',
+    'skip': 'SKIP',
+    'turnd': 'TURND',
+    'face0': 'FACE0',
+    'put': 'PUT',
+    'pick': 'PICK',
+    'movedir': 'MOVEDIR',
+    'rundir': 'RUNDIR',
+    'null': 'NULL',
+    'dim': 'DIM',
+    'myxpos': 'MYXPOS',
+    'myypos': 'MYYPOS',
+    'mychips': 'MYCHIPS',
+    'myballoons': 'MYBALLOONS',
+    'balloonshere': 'BALLOONSHERE',
+    'chipshere': 'CHIPSHERE',
+    'if': 'IF',
+    'loop': 'LOOP',
+    'repeat': 'REPEAT',
+    'defun': 'DEFUN',
+    'facing': 'FACING',
+    'blocked': 'BLOCKED',
+    'canput': 'CANPUT',
+    'canpick': 'CANPICK',
+    'canmove': 'CANMOVE',
+    'iszero': 'ISZERO',
+    'not': 'NOT',
+    'notcond': 'NOTCOND',
+    'run': 'RUN',
+    'drop': 'DROP',
+    'left': 'LEFT',
+    'right': 'RIGHT',
+    'down': 'DOWN',
+    'up': 'UP',
+}
 
 #----Recognize cintrol structures-----#
 
@@ -28,7 +67,7 @@ def t_MOVE(t):
     r'move'
     return t
 
-def t_Name(t):
+def t_NAME(t):
     r'name'
     return t
 
@@ -89,7 +128,9 @@ def t_MYBALLOONS(t):
     return t
 
 def t_BALLOONSHERE(t):
-    r'balloonshere'
+    r'balloonsHere:\s*\d+'
+    
+    t.value = int(t.value.split(":")[1].strip())  
     return t
 
 def t_CHIPSHERE(t):
@@ -168,18 +209,26 @@ def t_UP(t):
     r'up'
     return t
 
+#expresiones regulares tokens simples
+
+t_LPAREN = r'\('
+t_RPAREN = r'\)'
+t_COLON = r':'
+t_ignore = ' \t'
+
 
 #reconocer variables / numeros
-
+def t_VAR(t):
+    r'[a-zA-Z_$%^&()?+-:][a-zA-Z_0-9$%^&()?+-:]*'
+    t.type = keywords.get(t.value, 'VAR')  # Verificar si es una palabra clave
+    return t
 
 def t_NUMBER(t):
     r'\d+'
     t.value = int(t.value)
     return t
 
-def t_VAR(t):
-    r'[a-zA-Z_][a-zA-Z_0-9]*'
-    return t
+
 
 def t_newline(t):
     r'\n+'

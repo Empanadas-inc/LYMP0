@@ -28,3 +28,6 @@ def readFile(file_name:str):
     return bool_parser, all_phrases    
 
 
+print(readFile("C:\\Users\\Juane\\OneDrive\\Escritorio\\lym\\p0\\prueba.txt"))
+
+
