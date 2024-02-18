@@ -25,10 +25,9 @@ def readFile(file_name:str):
         all_phrases.append(tokened_phrase)# extend
         i+=1
         
-    return bool_parser, all_phrases    
+    return all_phrases    
 
-#NO ENTIENDO PARA QUE TE SIRVE EL BOOL 
-print(readFile("C:\\Users\\Juane\\OneDrive\\Escritorio\\lym\\p0\\prueba.txt"))
+print(readFile("C:\\Users\\Juane\\OneDrive\\Escritorio\\lym\\p0\\prueba.txt")) # FUNCIONA
 
 
 
