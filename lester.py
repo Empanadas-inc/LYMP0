@@ -2,7 +2,9 @@ import ply.lex as lex
 
 tokens={
     
-    "DEFVAR","NAME","MOVE","SKIP","TURND","FACE0","PUT","PICK",""
+    "DEFVAR","NAME","MOVE","SKIP","TURND","FACE0","PUT","PICK","MOVEDIR","RUNDIR","MOVEFACE",
+    "NULL","MOVEFACE","DIM","MYXPOS","MYYPOS","MYCHIPS","MYBALLOONS","BALOONSHERE","CHIPSHERE",
+    "SPACES",""
 }
 
 
