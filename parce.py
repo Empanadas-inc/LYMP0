@@ -21,8 +21,8 @@ def readFile(file_name:str):
     bool_parser=True
     
     while i <len(phrases) and bool_parser:
-        tokened
-        all_phrases.appemd(tokened_phrase)# extend
+        tokened_phrase=lex.tokenFile(phrases[i])
+        all_phrases.append(tokened_phrase)# extend
         bool_parser = rules.general_analyzer(tokened_phrase)
         i+=1
         
