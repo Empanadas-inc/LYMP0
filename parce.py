@@ -101,18 +101,16 @@ def verify_program(tokens):
 
 
 def Hayparentesis(tokens):
-    if(tokens =="RPAREN" or tokens=="LPAREN"):
+    if tokens and (tokens[0] == "RPAREN" or tokens[0] == "LPAREN"):
         tokens.pop(0)
-        if tokens =="DEFVAR" or tokens=="IF":
+        if tokens and (tokens[0] == "DEFVAR" or tokens[0] == "IF"):
             tokens.pop(0)
-            if tokens =="NOT" or tokens=="null":
+            if tokens and (tokens[0] == "NOT" or tokens[0] == "null"):
                 tokens.pop(0)
-                if tokens== "DEFUN" or tokens=="PUT":
+                if tokens and (tokens[0] == "DEFUN" or tokens[0] == "PUT"):
                     Hayparentesis(tokens)
-                    
     else:
         return False
-
         
   
         
