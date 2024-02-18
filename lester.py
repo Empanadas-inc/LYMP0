@@ -8,12 +8,11 @@ tokens = [
     "DEFVAR", "NAME", "VAR", "MOVE", "SKIP", "TURND", "FACE0", "PUT", "PICK", "MOVEDIR", "RUNDIR",
     "NULL", "MOVEFACE", "DIM", "MYXPOS", "MYYPOS", "MYCHIPS", "MYBALLOONS", "BALLOONSHERE", "CHIPSHERE",
     "SPACES", "IF", "LOOP", "REPEAT", "DEFUN", "FACING", "BLOCKED", "CANPUT", "CANPICK", "CANMOVE", "ISZERO",
-    "NOT", "NOTCOND", "RUN", "DROP", "LEFT", "RIGHT", "DOWN", "UP", "NUMBER", "LPAREN", "RPAREN", "COLON"
+    "NOT", "NOTCOND", "RUN", "DROP", "LEFT", "RIGHT", "DOWN", "UP", "NUMBER", "LPAREN", "RPAREN", "COLON",
 ]
 
-def tokens(tokens:list):
-    return tokens
 
+#QUE ES ESTO XDDD
 keywords = {
     'defvar': 'DEFVAR',
     'move': 'MOVE',
