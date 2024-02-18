@@ -23,7 +23,8 @@ def readFile(file_name:str):
     while i <len(phrases) and bool_parser:
         tokened_phrase=lex.tokenFile(phrases[i])
         all_phrases.append(tokened_phrase)# extend
-        bool_parser = rules.general_analyzer(tokened_phrase)
         i+=1
         
     return bool_parser, all_phrases    
+
+
