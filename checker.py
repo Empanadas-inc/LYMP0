@@ -5,38 +5,47 @@ tokens= lester.tokens# no estoy segur o de donde salen los tokens jajajja?
 
 
 
-def verify_instruction(tokens):
-    
-    if not tokens:
-        return True  #
-    
-    token = tokens.pop(0)  
-    
-    if token == "DEFVAR":
-        #
-        if tokens and tokens[0] == "NAME":
-            tokens.pop(0)  
-            if tokens and tokens[0] == "VAR":
-                tokens.pop(0)  
-                return verify_instruction(tokens)  
-            else:
-                return False  
-        else:
-            return False 
-    
-    elif token == "IF":
-        
-        return verify_instruction(tokens)  
-    
-    elif token == "LOOP":
-        
-        return verify_instruction(tokens) 
-    
-    else:
-        
+def verify_program(tokens):
+    def expect(tokens, expected):
+        if tokens and tokens[0] == expected:
+            tokens.pop(0)
+            return True
         return False
-    
+
+    while tokens:
+        token = tokens.pop(0)
+        if token == "DEFVAR":
+            if not tokens:
+                return False
+            if tokens.pop(0) != "NAME":
+                return False
+            if not tokens or tokens.pop(0) not in ["NUMBER", "STRING"]:
+                return False
+        elif token == "IF":
+            if not expect(tokens, "LPAREN"):
+                return False
+            if not expect(tokens, "CONDITION"):
+                return False
+            if not expect(tokens, "RPAREN"):
+                return False
+            if not expect(tokens, "THEN"):
+                return False
+            if not expect(tokens, "ACTION"):
+                return False
+        elif token == "LOOP":
+            if not expect(tokens, "LPAREN"):
+                return False
+            if not expect(tokens, "CONDITION"):
+                return False
+            if not expect(tokens, "RPAREN"):
+                return False
+            if not expect(tokens, "DO"):
+                return False
+            if not expect(tokens, "ACTION"):
+                return False
+        else:
+            return False
+    return True
 #pruebaaaa
 
-tokens_example = ["DEFVAR", "NAME", "VAR", "IF", "LOOP"]
-print(verify_instruction(tokens_example))
+
