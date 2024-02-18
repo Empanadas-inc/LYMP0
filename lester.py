@@ -11,6 +11,8 @@ tokens = [
     "NOT", "NOTCOND", "RUN", "DROP", "LEFT", "RIGHT", "DOWN", "UP", "NUMBER", "LPAREN", "RPAREN", "COLON"
 ]
 
+def tokens(tokens:list):
+    return tokens
 
 keywords = {
     'defvar': 'DEFVAR',
