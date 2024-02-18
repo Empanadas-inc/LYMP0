@@ -82,7 +82,7 @@ def verify_program(tokens):
                 return False
             if not expect(tokens, "PARAM"):
                 return False
-            # juan implementa las que faltan 
+            #TODOjuan implementa las que faltan 
         elif token == "RUN":
             if not expect(tokens, "NAME"):
                 return False
@@ -92,7 +92,7 @@ def verify_program(tokens):
                 return False
             if not expect(tokens, "DIRECTION"):
                 return False
-            # juan implementa las que faltan 
+            #TODOSjuan implementa las que faltan 
         else:
             return False
     return True

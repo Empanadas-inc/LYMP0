@@ -1,5 +1,5 @@
 import parce as pe
-#corregir estO ESTA RE LINDOOO
+#TODO corregir estO ESTA RE LINDOOO
 def run_program():
     
     x= pe.verify_program()
