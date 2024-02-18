@@ -20,7 +20,6 @@ tokens={
 
 
 #final pruebas 
-
 def t_DEFVAR(t):
     r'defvar'
     return t
@@ -58,7 +57,7 @@ def t_MOVEDIR(t):
     return t
 
 def t_RUNDIR(t):
-    r'rundir'
+    r'front|right|left|back'
     return t
 
 def t_MOVEFACE(t):
