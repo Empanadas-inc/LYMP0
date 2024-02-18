@@ -255,5 +255,65 @@ def tokenFile(frase):
         tokens_line.append(t.type)
         
     return tokens_line
-        
-        
+
+
+
+
+
+#TODO faltan todas estas dirreciones, creo que la implementación anterior esta mal para estas funciones      
+"""def t_MOVE(t):
+    r"move\s*\(\s*\d+\s*\)"
+    return t
+
+def t_SKIP(t):
+    r"skip\s*\(\s*\d+\s*\)"
+    return t
+
+def t_TURND(t):
+    r"turn\s*\(\s*:\w+\s*\)"
+    return t
+
+def t_FACE0(t):
+    r"face\s*\(\s*:\w+\s*\)"
+    return t
+
+def t_PUT(t):
+    r"put\s*\(\s*:\w+\s*\d+\s*\)"
+    return t
+
+def t_PICK(t):
+    r"pick\s*\(\s*:\w+\s*\d+\s*\)"
+    return t
+
+def t_MOVEDIR(t):
+    r"move-dir\s*\(\s*:\w+\s*\d+\s*\)"
+    return t
+
+def t_RUNDIR(t):
+    r"run-dirs\s*\(\s*(?::\w+\s*)+\)"
+    return t
+
+def t_MOVEFACE(t):
+    r"move-face\s*\(\s*\d+\s*:\w+\s*\)"
+    return t
+
+def t_NULL(t):
+    r"null"
+    return t
+
+def t_CANMOVE(t):
+    r"can-move\?\s*\(\s*:\w+\s*\)"
+    return t
+
+def t_CANPUT(t):
+    r"can-put\?\s*\(\s*:\w+\s*\)"
+    return t
+
+def t_CANPICK(t):
+    r"can-pick\?\s*\(\s*:\w+\s*\)"
+    return t
+
+def t_NOT(t):
+    r"not\s*\(\s*:\w+\s*\)"
+    return t
+"""

@@ -1,9 +1,11 @@
 import parce as pe
-#TODO corregir estO ESTA RE LINDOOO
+
+
 def run_program():
-    
-    x= pe.verify_program()
-    if x == True:
+    name = "pruebas.txt"
+    z = pe.readFile(name)
+    y = pe.parce_program(y)
+    if z == True:
         print("""
                      __
                      .'  '.
