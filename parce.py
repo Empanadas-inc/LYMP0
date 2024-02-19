@@ -27,7 +27,7 @@ def readFile(file_name:str):
         
     return all_phrases    
 
-print(readFile("C:\Users\ROG FLOW\Desktop\p1 lym\preubas.txt")) 
+print(readFile("C:\\Users\\ROG FLOW\\Desktop\\LYMP0\\pruebas.txt")) 
 #TODO realmente no se si esto funciona se que el retorno tiene que ser una lista de otkens por linea
 #porfa resuelvelo tambine 
 
