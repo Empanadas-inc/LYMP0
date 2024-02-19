@@ -50,28 +50,28 @@ FUNCIONES AUXILIARES
 
 def parser_condition(tokens):
     ans = False
-    if tokens[0].type != 'LPAREN':
+    if tokens[0] != 'LPAREN':
         ans
     
-    if tokens[1].value == 'facing?' and tokens[2].type == 'ORIENTATION' and tokens[3].type == 'RPAREN':
+    if tokens[1].value == 'facing?' and tokens[2] == 'ORIENTATION' and tokens[3] == 'RPAREN':
         ans = True
      
-    elif tokens[1].value == 'blocked?' and tokens[2].type == 'RPAREN':
+    elif tokens[1].value == 'blocked?' and tokens[2] == 'RPAREN':
         ans = True
     
-    elif tokens[1].value == 'can-put?' and tokens[2].type == 'ITEM' and tokens[3].type == 'NUMBER'and tokens[4].type == 'RPAREN':
+    elif tokens[1].value == 'can-put?' and tokens[2] == 'ITEM' and tokens[3] == 'NUMBER' and tokens[4] == 'RPAREN':
         ans = True 
     
-    elif tokens[1].value == 'can-pick?'and tokens[2].type == 'ITEM' and tokens[3].type == 'NUMBER' and tokens[4].type == 'RPAREN':
+    elif tokens[1].value == 'can-pick?' and tokens[2] == 'ITEM' and tokens[3] == 'NUMBER' and tokens[4] == 'RPAREN':
         ans =  True
     
-    elif tokens[1].value == 'can-move?' and tokens[2].type == 'ORIENTATION'and tokens[3].type == 'RPAREN':
+    elif tokens[1].value == 'can-move?' and tokens[2] == 'ORIENTATION' and tokens[3] == 'RPAREN':
         ans = True
     
-    elif tokens[1].value == 'isZero?' and tokens[2].type == 'NUMBER' or tokens[2].type == 'IDENTIFIER' and tokens[3].type == 'RPAREN':
+    elif tokens[1].value == 'isZero?' and tokens[2] == 'NUMBER' or tokens[2] == 'IDENTIFIER' and tokens[3] == 'RPAREN':
         ans = True
     
-    elif tokens[1].value == 'not'and tokens[2].type == 'CONDITION' and tokens[-1].type == 'RPAREN':
+    elif tokens[1].value == 'not' and tokens[2] == 'CONDITION' and tokens[-1] == 'RPAREN':
         
         tokens_arg = tokens[2:-1]
         return parser_condition(tokens_arg)
@@ -81,10 +81,10 @@ def parser_condition(tokens):
 
         
 def parser_blocks(tokens):
-    if tokens[0].type != 'LPAREN':
+    if tokens[0] != 'LPAREN':
         return False
     
-    type = tokens[1].type
+    type = tokens[1]
     
     parser_function = keywords.get(type)
     
@@ -145,7 +145,7 @@ def parser_defvar(tokens):
     ans = False
     if len(tokens) != 5:
         return ans
-        
+    print(tokens[0])
     if tokens[0] == "LPAREN":
         tokens.pop(0)
         if tokens[0] == "DEFPAR":
@@ -164,15 +164,15 @@ def parser_assign(tokens):
     if len(tokens) != 5:
         return ans
         
-    if tokens[0].type == "LPAREN":
+    if tokens[0] == "LPAREN":
         tokens.pop(0)
-        if tokens[0].type == "ASSIGN":
+        if tokens[0] == "ASSIGN":
             tokens.pop(0)
-            if tokens[0].type == "IDENTIFIER":
+            if tokens[0] == "IDENTIFIER":
                 tokens.pop(0)
-                if tokens[0].type == "NUMBER":
+                if tokens[0] == "NUMBER":
                     tokens.pop(0)
-                    if tokens[0].type == "RPAREN":
+                    if tokens[0] == "RPAREN":
                         ans = True
     return ans 
 
@@ -181,11 +181,11 @@ def parser_assign(tokens):
 
 def parser_loop(tokens):
     ans =False 
-    if tokens[0].type == "LPAREN":
+    if tokens[0] == "LPAREN":
         tokens.pop(0)
-        if tokens[0].type == "LOOP":
+        if tokens[0] == "LOOP":
             tokens.pop(0)
-            if tokens[-1].type == "RPAREN":
+            if tokens[-1] == "RPAREN":
                 ans = True
         ans
     tokens_arg = tokens[2:-1]
@@ -202,13 +202,13 @@ def parser_move(tokens):
     if len(tokens) != 4:
          ans
         
-    if tokens[0].type == "LPAREN":
+    if tokens[0] == "LPAREN":
         tokens.pop(0)
-        if tokens[0].type == "MOVE":
+        if tokens[0] == "MOVE":
             tokens.pop(0)
-            if tokens[0].type == "NUMBER":
+            if tokens[0] == "NUMBER":
                 tokens.pop(0)
-                if tokens[0].type == "RPAREN":
+                if tokens[0] == "RPAREN":
                     ans = True
     return ans 
  
@@ -218,13 +218,13 @@ def parser_skip(tokens):
     if len(tokens) != 4:
         ans
         
-    if tokens[0].type == "LPAREN":
+    if tokens[0] == "LPAREN":
         tokens.pop(0)
-        if tokens[0].type == "SKIP":
+        if tokens[0] == "SKIP":
             tokens.pop(0)
-            if tokens[0].type == "NUMBER" or tokens[0].type == "IDENTIFIER":
+            if tokens[0] == "NUMBER" or tokens[0] == "IDENTIFIER":
                 tokens.pop(0)
-                if tokens[0].type == "RPAREN":
+                if tokens[0] == "RPAREN":
                     ans = True
     return ans 
 
@@ -233,13 +233,13 @@ def parser_turn(tokens):
     if len(tokens) != 4:
         ans
         
-    if tokens[0].type == "LPAREN":
+    if tokens[0] == "LPAREN":
         tokens.pop(0)
-        if tokens[0].type == "TURN":
+        if tokens[0] == "TURN":
             tokens.pop(0)
-            if tokens[0].type == "DIRECTIONS":
+            if tokens[0] == "DIRECTIONS":
                 tokens.pop(0)
-                if tokens[0].type == "RPAREN":
+                if tokens[0] == "RPAREN":
                     ans = True
     return ans 
 
@@ -248,13 +248,13 @@ def parser_face(tokens):
     if len(tokens) != 4:
         ans
         
-    if tokens[0].type == "LPAREN":
+    if tokens[0] == "LPAREN":
         tokens.pop(0)
-        if tokens[0].type == "FACE":
+        if tokens[0] == "FACE":
             tokens.pop(0)
-            if tokens[0].type == "ORIENTATION":
+            if tokens[0] == "ORIENTATION":
                 tokens.pop(0)
-                if tokens[0].type == "RPAREN":
+                if tokens[0] == "RPAREN":
                     ans = True
     return ans 
 
@@ -263,15 +263,15 @@ def parser_put(tokens):
     if len(tokens) != 5:
         ans
         
-    if tokens[0].type == "LPAREN":
+    if tokens[0] == "LPAREN":
         tokens.pop(0)
-        if tokens[0].type == "PUT":
+        if tokens[0] == "PUT":
             tokens.pop(0)
-            if tokens[0].type == "ITEM":
+            if tokens[0] == "ITEM":
                 tokens.pop(0)
-                if tokens[0].type == "NUMBER":
+                if tokens[0] == "NUMBER":
                     tokens.pop(0)
-                    if tokens[0].type == "RPAREN":
+                    if tokens[0] == "RPAREN":
                         ans = True
     return ans 
 
@@ -280,15 +280,15 @@ def parser_pick(tokens):
     if len(tokens) != 5:
         ans
         
-    if tokens[0].type == "LPAREN":
+    if tokens[0] == "LPAREN":
         tokens.pop(0)
-        if tokens[0].type == "PICK":
+        if tokens[0] == "PICK":
             tokens.pop(0)
-            if tokens[0].type == "ITEM":
+            if tokens[0] == "ITEM":
                 tokens.pop(0)
-                if tokens[0].type == "NUMBER":
+                if tokens[0] == "NUMBER":
                     tokens.pop(0)
-                    if tokens[0].type == "RPAREN":
+                    if tokens[0] == "RPAREN":
                         ans = True
     return ans 
 
@@ -305,15 +305,15 @@ def parser_pick(tokens):
     if len(tokens) != 5:
         return ans
         
-    if tokens[0].type == "LPAREN":
+    if tokens[0] == "LPAREN":
         tokens.pop(0)
-        if tokens[0].type == "PICK":
+        if tokens[0] == "PICK":
             tokens.pop(0)
-            if tokens[0].type == "ITEM":
+            if tokens[0] == "ITEM":
                 tokens.pop(0)
-                if tokens[0].type == "NUMBER":
+                if tokens[0] == "NUMBER":
                     tokens.pop(0)
-                    if tokens[0].type == "RPAREN":
+                    if tokens[0] == "RPAREN":
                         ans = True
     return ans 
 
@@ -322,15 +322,15 @@ def parser_move_dir(tokens):
     if len(tokens) != 5:
         return ans
         
-    if tokens[0].type == "LPAREN":
+    if tokens[0] == "LPAREN":
         tokens.pop(0)
-        if tokens[0].type == "MOVE_DIR":
+        if tokens[0] == "MOVE_DIR":
             tokens.pop(0)
-            if tokens[0].type == "NUMBER":
+            if tokens[0] == "NUMBER":
                 tokens.pop(0)
-                if tokens[0].type == "DIRECTIONS":
+                if tokens[0] == "DIRECTIONS":
                     tokens.pop(0)
-                    if tokens[0].type == "RPAREN":
+                    if tokens[0] == "RPAREN":
                         ans = True
     return ans 
 
@@ -344,15 +344,15 @@ def parser_move_face(tokens):
     if len(tokens) != 5:
         return ans
         
-    if tokens[0].type == "LPAREN":
+    if tokens[0] == "LPAREN":
         tokens.pop(0)
-        if tokens[0].type == "MOVE_FACE":
+        if tokens[0] == "MOVE_FACE":
             tokens.pop(0)
-            if tokens[0].type == "NUMBER" or tokens[0].type == "IDENTIFIER":
+            if tokens[0]== "NUMBER" or tokens[0] == "IDENTIFIER":
                 tokens.pop(0)
-                if tokens[0].type == "ORIENTATION":
+                if tokens[0] == "ORIENTATION":
                     tokens.pop(0)
-                    if tokens[0].type == "RPAREN":
+                    if tokens[0] == "RPAREN":
                         ans = True
     return ans 
 
@@ -361,57 +361,47 @@ def parser_null(tokens):
     if len(tokens) != 3:
         return ans
         
-    if tokens[0].type == "LPAREN":
+    if tokens[0] == "LPAREN":
         tokens.pop(0)
-        if tokens[0].type == "NULL":
+        if tokens[0] == "NULL":
             tokens.pop(0)
-            if tokens[0].type == "RPAREN":
+            if tokens[0] == "RPAREN":
                 ans = True
     return ans 
 
 
 
 
-def parce_program(tokens:list):
-    #TODO si la condición retorna falso tambien las otras condiciones retornan falso,
-    #Falta remplazarlo porfaaaa, esta implementación funcionara siempre y cuando el lester sea una stack
-    
-    retorno=True
-    
+def parce_program(tokens):
+    result = False  
     for row in tokens:
-        for token in row:
-           if row[0]== "LPAREN":
-                print("hellonigga")            
-                if token == "DEFVAR" and  parser_defvar(tokens):
-                        return retorno
-                if token[row][1] == "ASSIGN" and  parser_assign(tokens):
-                    return retorno
-                if token[row][1] == "MOVE" and parser_move(tokens):
-                    return retorno
-                if token[row][1] == "SKIP" and  parser_skip(tokens):
-                    return retorno 
-                if token[row][1]== "TURN" and  parser_turn(tokens):
-                    return retorno
-                if token[row][1] == "FACE" and  parser_face(tokens):
-                    return retorno
-                if token[row][1]== "PUT" and parser_assign(tokens):
-                    return retorno 
-                if token[row][1]== "PICK" and parser_pick(tokens):
-                    return retorno
-                if token[row][1] == "MOVE_DIR" and parser_move_dir(tokens):
-                    return retorno
-                if token[row][1] == "RUNS_DIRS" and True:#TODO MISSING
-                    return retorno
-                if token[row][1] == "MOVE_FACE" and  parser_move_face(tokens):
-                    return retorno
-                if token[row][1] == "NULL" and parser_null(tokens):
-                    return retorno
-                if token[row][1]== "REPEAT" and True: #TODO MISSING
-                    return retorno
-                if token[row][1] == "LOOP" and parser_loop(tokens):
-                    return retorno
 
+        if len(row) > 2:  
             
+            token_type = row[1]  
+
+            print(parser_defvar(tokens))
+            if token_type == "DEFVAR" and parser_defvar(tokens): 
+                print("aquitoy")
+                result = True
+            if token_type == "ASSIGN" and parser_assign(tokens):
+                result = True
+            if token_type == "MOVE" and parser_move(tokens):
+                result = True
+            if token_type == "SKIP" and parser_skip(tokens):
+                result = True
+            if token_type == "TURN" and parser_turn(tokens):
+                result = True
+            if token_type == "FACE" and parser_face(tokens):
+                result = True
+            if token_type == "PUT" and parser_put(tokens):
+                result = True
+            if token_type == "PICK" and parser_pick(tokens):
+                result = True
+            if token_type == "LOOP" and parser_loop(tokens):
+                pass
+
+    return result
             
 print(parce_program(readFile("C:\\Users\\ROG FLOW\\Desktop\\LYMP0\\pruebas.txt")))
 
