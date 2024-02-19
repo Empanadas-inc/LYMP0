@@ -757,24 +757,41 @@ def parce_program(tokens):
 
              
                 if token_type == "DEFVAR" and parser_defvar(row): 
-                    result=True
                     
-                    if token_type == "ASSIGN" and parser_assign(row):
+                    parce_program(row)
+                    
+                if token_type == "ASSIGN" and parser_assign(row):
+                    
+                    parce_program(row)
                       
-                         if token_type == "MOVE" and parser_move(row):
+                if token_type == "MOVE" and parser_move(row):
+                    
+                    parce_program(row)
                    
-                            if token_type == "SKIP" and parser_skip(row):
+                if token_type == "SKIP" and parser_skip(row):
                     
-                                  if token_type == "TURN" and parser_turn(row):
+                    parce_program(row)
                     
-                                     if token_type == "FACE" and parser_face(row):
+                if token_type == "TURN" and parser_turn(row):
                     
-                                        if token_type == "PUT" and parser_put(row):
+                    parce_program(row)
                     
-                                            if token_type == "PICK" and parser_pick(row):
+                if token_type == "FACE" and parser_face(row):
                     
-                                                 if token_type == "LOOP" and parser_loop(row):
-                                                     result= True
+                    parce_program(row)
+                    
+                if token_type == "PUT" and parser_put(row):
+                   
+                    parce_program(row)
+                    
+                if token_type == "PICK" and parser_pick(row):
+                   
+                    parce_program(row)
+                    
+                if token_type == "LOOP" and parser_loop(row):
+                    result=True
+                    parce_program(row)
+                                                    
                     
                 
     return result
