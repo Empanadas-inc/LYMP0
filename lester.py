@@ -220,7 +220,7 @@ t_ignore = ' \t'
 
 #reconocer variables / numeros
 def t_VAR(t):
-    r'[a-zA-Z_$%^&()?+-:][a-zA-Z_0-9$%^&()?+-:]*'
+    r'[a-z?*=*-]+'
     t.type = keywords.get(t.value, 'VAR')  # Verificar si es una palabra clave
     return t
 

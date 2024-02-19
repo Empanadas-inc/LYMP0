@@ -27,136 +27,18 @@ def readFile(file_name:str):
         
     return all_phrases    
 
-print(readFile("C:\\Users\\ROG FLOW\\Desktop\\LYMP0\\pruebas.txt")) 
-#TODO realmente no se si esto funciona se que el retorno tiene que ser una lista de otkens por linea
-#porfa resuelvelo tambine 
+#[[], ['LPAREN', 'DEFVAR', 'VAR', 'NUMBER', 'RPAREN'], 
+# ['LPAREN', 'DEFVAR', 'VAR', 'VAR', 'RPAREN']]
 
 
 """
-def verify_program(tokens):
-    def expect(tokens, expected):
-        if tokens and tokens[0] == expected:
-            tokens.pop(0)
-            return True
-        return False
+VERIFICADOR 
 
-    def expect_parentheses(tokens):
-        if not tokens:
-            return False
-        if tokens[0] == "LPAREN":
-            tokens.pop(0)
-            if not expect(tokens, "CONDITION"):
-                return False
-            if not expect(tokens, "RPAREN"):
-                return False
-            return True
-        return False
-
-    while tokens:
-        token = tokens.pop(0)
-        if token == "DEFVAR":
-            if not tokens:
-                return False
-            if tokens.pop(0) != "NAME":
-                return False
-            if not tokens or tokens.pop(0) not in ["NUMBER", "STRING"]:
-                return False
-        elif token == "IF":
-            if not expect_parentheses(tokens):
-                return False
-            if not expect(tokens, "THEN"):
-                return False
-            if not expect_parentheses(tokens):
-                return False
-        elif token == "LOOP":
-            if not expect_parentheses(tokens):
-                return False
-            if not expect(tokens, "DO"):
-                return False
-            if not expect_parentheses(tokens):
-                return False
-        elif token == "DEFUN":
-            if not expect(tokens, "NAME"):
-                return False
-            if not expect_parentheses(tokens):
-                return False
-            if not expect(tokens, "PARAM"):
-                return False
-            if not expect(tokens, "PARAM"):
-                return False
-            
-        elif token == "RUN":
-            if not expect(tokens, "NAME"):
-                return False
-            if not expect_parentheses(tokens):
-                return False
-            if not expect(tokens, "DIRECTION"):
-                return False
-            if not expect(tokens, "DIRECTION"):
-                return False
-            
-        else:
-            return False
-    return True
+"""
+     
 
 
 
-
-def Hayparentesis(tokens):
-    if tokens and (tokens[0] == "RPAREN" or tokens[0] == "LPAREN"):
-        tokens.pop(0)
-        if tokens and (tokens[0] == "DEFVAR" or tokens[0] == "IF"):
-            tokens.pop(0)
-            if tokens and (tokens[0] == "NOT" or tokens[0] == "null"):
-                tokens.pop(0)
-                if tokens and (tokens[0] == "DEFUN" or tokens[0] == "PUT"):
-                    Hayparentesis(tokens)
-    else:
-        return False
-        
-  
-        """
-#fuck this shit
-
-def parce_program(tokens:list):
-    #TODO si la condición retorna falso tambien las otras condiciones retornan falso,
-    #Falta remplazarlo porfaaaa, esta implementación funcionara siempre y cuando el lester sea una stack
-
-    for token in tokens:
-        if token[1].type == "DEFVAR" and not ("aca va la función del token"):
-            return False 
-        if token[1].type == "ASSIGN" and not ("aca va la función del token"):
-            return False 
-        if token[1].type == "MOVE" and not ("aca va la función del token"):
-            return False 
-        if token[1].type == "SKIP" and not ("aca va la función del token"):
-            return False 
-        if token[1].type == "TURN" and not ("aca va la función del token"):
-            return False 
-        if token[1].type == "FACE" and not ("aca va la función del token"):
-            return False 
-        if token[1].type == "PUT" and not ("aca va la función del token"):
-            return False 
-        if token[1].type == "PICK" and not ("aca va la función del token"):
-            return False 
-        if token[1].type == "MOVE_DIR" and not ("aca va la función del token"):
-            return False 
-        if token[1].type == "RUNS_DIRS" and not ("aca va la función del token"):
-            return False 
-        if token[1].type == "MOVE_FACE" and not ("aca va la función del token"):
-            return False 
-        if token[1].type == "NULL" and not ("aca va la función del token"):
-            return False 
-        if token[1].type == "REPEAT" and not ("aca va la función del token"):
-            return False 
-        if token[1].type == "DEFVAR" and not ("aca va la función del token"):
-            return False 
-        
-        
-        
-        
-        
-        
 """
 
 
@@ -195,6 +77,8 @@ def parser_condition(tokens):
         return parser_condition(tokens_arg)
     
     return False
+
+
         
 def parser_blocks(tokens):
     if tokens[0].type != 'LPAREN':
@@ -262,15 +146,15 @@ def parser_defvar(tokens):
     if len(tokens) != 5:
         return ans
         
-    if tokens[0].type == "LPAREN":
+    if tokens[0] == "LPAREN":
         tokens.pop(0)
-        if tokens[0].type == "DEFPAR":
+        if tokens[0] == "DEFPAR":
             tokens.pop(0)
-            if tokens[0].type == "IDENTIFIER":
+            if tokens[0] == "IDENTIFIER":
                 tokens.pop(0)
-                if tokens[0].type == "NUMBER":
+                if tokens[0] == "NUMBER":
                     tokens.pop(0)
-                    if tokens[0].type == "RPAREN":
+                    if tokens[0] == "RPAREN":
                         ans = True
     return ans 
 
@@ -408,6 +292,14 @@ def parser_pick(tokens):
                         ans = True
     return ans 
 
+def parser_loop(tokens):
+    ret=False
+    if True:
+        pass
+    
+    
+    
+    
 def parser_pick(tokens):
     ans = False
     if len(tokens) != 5:
@@ -476,3 +368,51 @@ def parser_null(tokens):
             if tokens[0].type == "RPAREN":
                 ans = True
     return ans 
+
+
+
+
+def parce_program(tokens:list):
+    #TODO si la condición retorna falso tambien las otras condiciones retornan falso,
+    #Falta remplazarlo porfaaaa, esta implementación funcionara siempre y cuando el lester sea una stack
+    
+    retorno=True
+    
+    for row in tokens:
+        for token in row:
+           if row[0]== "LPAREN":
+                print("hellonigga")            
+                if token == "DEFVAR" and  parser_defvar(tokens):
+                        return retorno
+                if token[row][1] == "ASSIGN" and  parser_assign(tokens):
+                    return retorno
+                if token[row][1] == "MOVE" and parser_move(tokens):
+                    return retorno
+                if token[row][1] == "SKIP" and  parser_skip(tokens):
+                    return retorno 
+                if token[row][1]== "TURN" and  parser_turn(tokens):
+                    return retorno
+                if token[row][1] == "FACE" and  parser_face(tokens):
+                    return retorno
+                if token[row][1]== "PUT" and parser_assign(tokens):
+                    return retorno 
+                if token[row][1]== "PICK" and parser_pick(tokens):
+                    return retorno
+                if token[row][1] == "MOVE_DIR" and parser_move_dir(tokens):
+                    return retorno
+                if token[row][1] == "RUNS_DIRS" and True:#TODO MISSING
+                    return retorno
+                if token[row][1] == "MOVE_FACE" and  parser_move_face(tokens):
+                    return retorno
+                if token[row][1] == "NULL" and parser_null(tokens):
+                    return retorno
+                if token[row][1]== "REPEAT" and True: #TODO MISSING
+                    return retorno
+                if token[row][1] == "LOOP" and parser_loop(tokens):
+                    return retorno
+
+            
+            
+print(parce_program(readFile("C:\\Users\\ROG FLOW\\Desktop\\LYMP0\\pruebas.txt")))
+
+            

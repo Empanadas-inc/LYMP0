@@ -4,7 +4,7 @@ import parce as pe
 def run_program():
     name = "pruebas.txt"
     z = pe.readFile(name)
-    y = pe.parce_program(y)
+    y = pe.parce_program(z)
     if z == True:
         print("""
                      __
