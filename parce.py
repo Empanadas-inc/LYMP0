@@ -169,29 +169,30 @@ def parser_defvar(tokens):
 
 
 
-"""
+
 def parser_assign(tokens):
+    
+   
     ans = False
     if len(tokens) != 5:
         return ans
-        
-    if tokens[0] == "LPAREN":
-        tokens.pop(0)
-        if tokens[0] == "ASSIGN":
-            tokens.pop(0)
-            if tokens[0] == "IDENTIFIER":
-                tokens.pop(0)
-                if tokens[0] == "NUMBER":
-                    tokens.pop(0)
-                    if tokens[0] == "RPAREN":
+    
+    i = 0
+    if tokens[i] == "LPAREN":
+        i += 1
+        if tokens[i] == "ASSIGN":
+            i += 1
+            if tokens[i] == "IDENTIFIER":
+                i += 1
+                if tokens[i] == "NUMBER":
+                    i += 1
+                    if tokens[i] == "RPAREN":
                         ans = True
-    return ans 
+    return ans
 
 
 
 """
-
-
 def parser_assign(tokens):
     ans = False
     i = 0  # Index to keep track of the current position in tokens
@@ -199,10 +200,9 @@ def parser_assign(tokens):
     if len(tokens) != 5:
         return ans
     
-    if tokens[i] == "LPAREN":
-        i += 1
+    
         
-        if i < len(tokens) and tokens[i] == "ASSIGN":
+    if i < len(tokens) and tokens[i] == "ASSIGN":
             i += 1
             
             if i < len(tokens) and tokens[i] == "IDENTIFIER":
@@ -215,6 +215,9 @@ def parser_assign(tokens):
                         ans = True
 
     return ans
+
+
+"""
 
 
 #TODO esta seguramente esta mal (loop)
@@ -745,7 +748,7 @@ def parce_program(tokens):
 
     for row in tokens:
         
-        for prueba in row:
+     
         
          
             if len(row) > 2:  
@@ -754,23 +757,25 @@ def parce_program(tokens):
 
              
                 if token_type == "DEFVAR" and parser_defvar(row): 
-                    result = True
-                if token_type == "ASSIGN" and parser_assign(row):
-                    result = True
-                if token_type == "MOVE" and parser_move(row):
-                    result = True
-                if token_type == "SKIP" and parser_skip(row):
-                    result = True
-                if token_type == "TURN" and parser_turn(row):
-                    result = True
-                if token_type == "FACE" and parser_face(row):
-                    result = True
-                if token_type == "PUT" and parser_put(row):
-                    result = True
-                if token_type == "PICK" and parser_pick(row):
-                    result = True
-                if token_type == "LOOP" and parser_loop(row):
-                    result= True
+                    result=True
+                    
+                    if token_type == "ASSIGN" and parser_assign(row):
+                      
+                         if token_type == "MOVE" and parser_move(row):
+                   
+                            if token_type == "SKIP" and parser_skip(row):
+                    
+                                  if token_type == "TURN" and parser_turn(row):
+                    
+                                     if token_type == "FACE" and parser_face(row):
+                    
+                                        if token_type == "PUT" and parser_put(row):
+                    
+                                            if token_type == "PICK" and parser_pick(row):
+                    
+                                                 if token_type == "LOOP" and parser_loop(row):
+                                                     result= True
+                    
                 
     return result
             
