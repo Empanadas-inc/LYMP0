@@ -142,7 +142,7 @@ keywords = {
 #FUNCIONES PARCHADAS 
 def parser_defvar(tokens):
     ans = False
-    i = 0  # Index to keep track of the current position in tokens
+    i = 0  
     
     while i < len(tokens):
         token = tokens[i]
@@ -244,7 +244,7 @@ def parser_loop(tokens):
 """
 def parser_move(tokens):
     ans = False
-    i = 0  # Index to keep track of the current position in tokens
+    i = 0  
     
     if len(tokens) != 4:
         return ans
@@ -287,7 +287,7 @@ def parser_move(tokens):
 
 def parser_move(tokens):
     ans = False
-    i = 0  # Index to keep track of the current position in tokens
+    i = 0  
     
     if len(tokens) != 4:
         return ans
@@ -329,8 +329,7 @@ def parser_skip(tokens):
 
 def parser_skip(tokens):
     ans = False
-    i = 0  # Index to keep track of the current position in tokens
-    
+    i = 0 
     if len(tokens) != 4:
         return ans
     
@@ -370,7 +369,7 @@ def parser_turn(tokens):
 
 def parser_turn(tokens):
     ans = False
-    i = 0  # Index to keep track of the current position in tokens
+    i = 0  
     
     if len(tokens) != 4:
         return ans
@@ -411,8 +410,7 @@ def parser_face(tokens):
 """
 def parser_face(tokens):
     ans = False
-    i = 0  # Index to keep track of the current position in tokens
-    
+    i = 0  
     if len(tokens) != 4:
         return ans
     
@@ -452,8 +450,7 @@ def parser_put(tokens):
 
 def parser_put(tokens):
     ans = False
-    i = 0  # Index to keep track of the current position in tokens
-    
+    i = 0  
     if len(tokens) != 5:
         return ans
     
@@ -499,7 +496,7 @@ def parser_pick(tokens):
 """
 def parser_pick(tokens):
     ans = False
-    i = 0  # Index to keep track of the current position in tokens
+    i = 0  
     
     if len(tokens) != 5:
         return ans
@@ -546,7 +543,7 @@ def parser_pick(tokens):
 """  
 def parser_pick(tokens):
     ans = False
-    i = 0  # Index to keep track of the current position in tokens
+    i = 0  
     
     if len(tokens) != 5:
         return ans
@@ -590,7 +587,7 @@ def parser_move_dir(tokens):
 """
 def parser_move_dir(tokens):
     ans = False
-    i = 0  # Index to keep track of the current position in tokens
+    i = 0  
     
     if len(tokens) != 5:
         return ans
@@ -615,7 +612,7 @@ def parser_move_dir(tokens):
 #TODO FALTA 
 def parser_loop(tokens):
     ans = False
-    i = 0  # Index to keep track of the current position in tokens
+    i = 0  
     
     if i < len(tokens) and tokens[i] == "LPAREN":
         i += 1
@@ -623,19 +620,19 @@ def parser_loop(tokens):
         if i < len(tokens) and tokens[i] == "LOOP":
             i += 1
 
-            # Check for nested loops or loop body
+            
             while i < len(tokens) and tokens[i] != "RPAREN":
                 if tokens[i] == "LOOP":
-                    # Recursively parse the nested loop
+                    
                     if parser_loop(tokens[i+1:]):
                         i += tokens[i+1:].index("RPAREN") + 1
                     else:
                         break
                 else:
-                    # You can add additional logic here for the loop body if needed
+                    
                     i += 1
 
-            # Check for the closing RPAREN
+           
             if i < len(tokens) and tokens[i] == "RPAREN":
                 ans = True
 
@@ -643,7 +640,7 @@ def parser_loop(tokens):
 
 def parser_run_dirs(tokens):
     ans = False
-    i = 0  # Index to keep track of the current position in tokens
+    i = 0 
     
     if len(tokens) < 4:
         return ans
@@ -654,12 +651,12 @@ def parser_run_dirs(tokens):
         if i < len(tokens) and tokens[i] == "RUN_DIRS":
             i += 1
 
-            # Check for the run_dirs arguments
+           
             while i < len(tokens) and tokens[i] != "RPAREN":
-                # You can add additional logic here for the run_dirs arguments if needed
+                
                 i += 1
 
-            # Check for the closing RPAREN
+           
             if i < len(tokens) and tokens[i] == "RPAREN":
                 ans = True
 
@@ -701,7 +698,7 @@ def parser_null(tokens):
 """
 def parser_move_face(tokens):
     ans = False
-    i = 0  # Index to keep track of the current position in tokens
+    i = 0  
     
     if len(tokens) != 5:
         return ans
@@ -726,7 +723,7 @@ def parser_move_face(tokens):
 
 def parser_null(tokens):
     ans = False
-    i = 0  # Index to keep track of the current position in tokens
+    i = 0 
     
     if len(tokens) != 3:
         return ans
@@ -796,6 +793,8 @@ def parce_program(tokens):
                 
     return result
             
-print(parce_program(readFile("C:\\Users\\Juane\OneDrive\\Escritorio\\lym\\p0\\LYMP0\\pruebas.txt")))
+
 
             
+            
+#"C:\\Users\\Juane\OneDrive\\Escritorio\\lym\\p0\\LYMP0\\pruebas.txt"
