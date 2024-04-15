@@ -11,7 +11,7 @@ tokens = [
     "NOT", "NOTCOND", "RUN", "DROP", "LEFT", "RIGHT", "DOWN", "UP", "NUMBER", "LPAREN", "RPAREN", "COLON",
 ]
 
-
+dasdasdasdasd
 #QUE ES ESTO XDDD
 keywords = {
     'defvar': 'DEFVAR',
